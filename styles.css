@@ -1,44 +1,39 @@
-/* IMPORTAMOS UNA FUENTE REDONDEADA Y MODERNA DESDE GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 
-/* VARIABLES DE COLOR */
 :root {
   --blanco: #ffffff;
-  --gris: #888888;
-  --gris-oscuro: #1f1f1f;
+  --gris: #cccbcb;
+  --gris-oscuro: #000000e5;
   --rojo-palido: #ff4c3c;
   --rosa-bajo: #ff3e55;
-  --fondo-oscuro: rgba(0, 0, 0, 0.4);
+  --fondo-claro: #f5f5f5;
 }
 
-/* RESETEO */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-/* SEPARACION DE LOS BOTONES */
+
 button {
   margin-top: 2rem;
 }
 
-/* CUERPO */
 html, body {
   width: 100%;
   overflow-x: hidden;
   font-family: 'Comfortaa', sans-serif;
-  color: var(--blanco);
+  color: var(--gris-oscuro);
   scroll-behavior: smooth;
-  background-color: var(--gris-oscuro);
+  background-color: var(--fondo-claro);
   padding-top: 130px;
 }
 
-/* CUBRIR ESPACIO DETRÁS DE LA NAVBAR FIJA */
 body::before {
   content: '';
   display: block;
   height: 130px;
-  background-color: var(--rojo-palido); /* MISMO COLOR QUE LA NAVBAR */
+  background-color: var(--rojo-palido);
   position: fixed;
   top: 0;
   left: 0;
@@ -46,7 +41,6 @@ body::before {
   z-index: 998;
 }
 
-/* NAVBAR FIJA */
 #navbar {
   background-color: var(--rojo-palido);
   padding: 2rem;
@@ -62,7 +56,6 @@ body::before {
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
-/* BLOQUE LOGO + TEXTOS CLICKEABLE */
 .logo-bloque {
   display: flex;
   align-items: center;
@@ -70,15 +63,15 @@ body::before {
   margin-right: auto;
 }
 
-/* LOGO */
 .logo-bloque .logo {
   width: 80px;
   height: 80px;
   border-radius: 50%;
   margin-right: 1rem;
+  border: none;
+  box-shadow: none;
 }
 
-/* TÍTULO Y SLOGAN */
 .logo-bloque .titulo-y-slogan {
   display: flex;
   flex-direction: column;
@@ -96,7 +89,6 @@ body::before {
   margin-top: 0.3rem;
 }
 
-/* MENÚ */
 #navbar ul {
   list-style: none;
   display: flex;
@@ -107,6 +99,7 @@ body::before {
   text-decoration: none;
   color: var(--gris-oscuro);
   font-weight: bold;
+  font-size: 1.3rem; /* AUMENTADO */
   transition: color 0.3s;
 }
 
@@ -114,41 +107,44 @@ body::before {
   color: var(--blanco);
 }
 
-/* SECCIONES */
 section {
   position: relative;
   text-align: center;
   padding: 5rem 2rem;
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: darken;
-  background-color: var(--fondo-oscuro);
+  background-color: var(--fondo-claro);
   display: flex;
   flex-direction: column;
   align-items: center;
   scroll-margin-top: 140px;
 }
 
-/* AJUSTE ESPECIAL PARA HOME */
 #home {
-  scroll-margin-top: 100px; /* PARA QUE NO SE TAPEN LOS TÍTULOS CON LA NAVBAR FIJA */
-  margin-top: -130px;         /* ELIMINA SALTO VISUAL AL TOPE */
-  padding-top: 180px;         /* PARA QUE EL CONTENIDO NO SE OCUPE DEBAJO DE LA NAVBAR */
+  scroll-margin-top: 100px;
+  margin-top: -130px;
+  padding-top: 180px;
+  background-image: url('URL-DE-TU-IMAGEN-1.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 #about {
-  scroll-margin-top: 140px; /* PARA QUE NO SE TAPEN LOS TÍTULOS CON LA NAVBAR FIJA */
+  background-image: url('URL-DE-TU-IMAGEN-2.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 #services {
-  scroll-margin-top: 140px; /* PARA QUE NO SE TAPEN LOS TÍTULOS CON LA NAVBAR FIJA */
+  background-image: url('URL-DE-TU-IMAGEN-3.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 #contact {
-  scroll-margin-top: 140px; /* PARA QUE NO SE TAPEN LOS TÍTULOS CON LA NAVBAR FIJA */
+  background-image: url('URL-DE-TU-IMAGEN-4.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-/* CONTENIDO INTERNO */
 section > * {
   max-width: 900px;
   width: 100%;
@@ -164,7 +160,6 @@ section p {
   font-size: 1.2rem;
 }
 
-/* BOTONES */
 button {
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
@@ -181,21 +176,17 @@ button:hover {
   color: var(--blanco);
 }
 
-/* IMÁGENES INTERNAS (OPTIMIZADAS) */
 .banner-image,
 .team-image,
 .services-image,
 .contact-image {
-  width: 100%;
-  max-width: 1000px;         /* 🔧 TAMAÑO MÁXIMO VISUAL */
-  height: auto;
-  margin: 2rem auto 1rem;
+  max-width: 90%;
+  margin: 2rem auto 0;
   display: block;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* FOOTER */
 footer {
   background-color: var(--gris-oscuro);
   text-align: center;
@@ -205,7 +196,7 @@ footer {
 }
 
 footer a {
-  color: var(--rosa-bajo);
+  color: var(--gris);
   text-decoration: none;
 }
 
