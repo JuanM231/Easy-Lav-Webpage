@@ -122,25 +122,21 @@ section {
   scroll-margin-top: 100px;
   margin-top: -130px;
   padding-top: 180px;
-  background-image: url('URL-DE-TU-IMAGEN-1.jpg');
   background-size: cover;
   background-position: center;
 }
 
 #about {
-  background-image: url('URL-DE-TU-IMAGEN-2.jpg');
   background-size: cover;
   background-position: center;
 }
 
 #services {
-  background-image: url('URL-DE-TU-IMAGEN-3.jpg');
   background-size: cover;
   background-position: center;
 }
 
 #contact {
-  background-image: url('URL-DE-TU-IMAGEN-4.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -158,6 +154,18 @@ section h2 {
 
 section p {
   font-size: 1.2rem;
+}
+
+.banner-image,
+.team-image,
+.services-image {
+  max-width: 600px;         /* límite más pequeño */
+  width: 100%;              /* responsive */
+  margin: 2rem auto 0;
+  display: block;
+  border-radius: 25px;      /* más redondeado */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  height: auto;             /* mantiene proporción */
 }
 
 button {
