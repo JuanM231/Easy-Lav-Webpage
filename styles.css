@@ -160,7 +160,7 @@ section p {
 .team-image,
 .services-image {
   max-width: 600px;         /* límite más pequeño */
-  width: 100%;              /* responsive */
+  width: 50%;              /* responsive */
   margin: 2rem auto 0;
   display: block;
   border-radius: 25px;      /* más redondeado */
