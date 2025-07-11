@@ -165,14 +165,14 @@ button {
   font-size: 1rem;
   border: none;
   border-radius: 10px;
-  background-color: var(--rosa-bajo);
+  background-color: var(--rojo-palido);
   color: var(--gris-oscuro);
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: var(--rojo-palido);
+  background-color: var(--rosa-bajo);
   color: var(--blanco);
 }
 
