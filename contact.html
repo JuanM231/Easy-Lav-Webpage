@@ -1,130 +1,682 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto - Easy Lav</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Webpage/refs/heads/main/images/icon/475869239_1199021471623884_3319341337589532364_n-removebg-preview%20(2).ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Comfortaa', sans-serif;
-      background-color: #f2f2f2;
-      color: #1a1a1a;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Easy Lav</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/refs/heads/main/images/icon/475869239_1199021471623884_3319341337589532364_n-removebg-preview%20(2).ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff4c3c;
+            --secondary-color: #ff3e55;
+            --accent-color: #ffd700;
+            --dark-color: #1a1a1a;
+            --light-color: #ffffff;
+            --gray-color: #f5f5f5;
+            --text-color: #333;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --gradient-bg: linear-gradient(135deg, #ff4c3c 0%, #ff3e55 100%);
+        }
 
-    #formulario-contacto {
-      padding: 5rem 2rem;
-      background-color: #ffffff;
-      max-width: 800px;
-      margin: 150px auto 3rem;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      color: #1a1a1a;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    #formulario-contacto h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--gray-color);
+            overflow-x: hidden;
+        }
 
-    #formulario-contacto p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 76, 60, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    form label {
-      font-weight: bold;
-      text-align: left;
-    }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
 
-    form input,
-    form textarea {
-      padding: 0.8rem;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      font-size: 1rem;
-      background-color: #fafafa;
-      color: #1a1a1a;
-      font-family: 'Comfortaa', sans-serif;
-    }
+        .logo-section:hover {
+            transform: scale(1.05);
+        }
 
-    form button {
-      padding: 0.8rem 1.5rem;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff4c3c;
-      color: #ffffff;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      font-family: 'Comfortaa', sans-serif;
-    }
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
 
-    form button:hover {
-      background-color: #ff3e55;
-      color: #000000;
-    }
-  </style>
+        .logo:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .brand-text h1 {
+            font-size: 2rem;
+            color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .brand-text p {
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+        }
+
+        .contact-hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(255, 76, 60, 0.1), rgba(255, 62, 85, 0.1));
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .contact-hero p {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient-bg);
+        }
+
+        .form-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Comfortaa', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 76, 60, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--gradient-bg);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Comfortaa', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 76, 60, 0.3);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-card h3 i {
+            font-size: 1.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .info-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+            50% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
+            100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div id="navbar">
-      <a href="index.html#home" class="logo-bloque">
-        <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Webpage/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" class="logo" alt="Logo" width="100" height="100">
-        <div class="titulo-y-slogan">
-          <h1>Easy Lav</h1>
-          <p>Lava Facil</p>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html#home" class="logo-section">
+                <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" alt="Easy Lav Logo" class="logo">
+                <div class="brand-text">
+                    <h1>Easy Lav</h1>
+                    <p>Lava Fácil</p>
+                </div>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#home">Inicio</a></li>
+                <li><a href="index.html#about">Sobre Nosotros</a></li>
+                <li><a href="index.html#services">Servicios</a></li>
+                <li><a href="#" style="color: var(--accent-color);">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Contact Hero -->
+        <section class="contact-hero">
+            <h1>¡Contáctanos!</h1>
+            <p>Estamos aquí para ayudarte con todas tus necesidades de lavandería. Envíanos un mensaje y te responderemos lo antes posible.</p>
+        </section>
+
+        <!-- Contact Container -->
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 class="form-title">Envíanos un Mensaje</h2>
+                <p class="form-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+                
+                <form action="https://formsubmit.co/jm2104321@gmail.com" method="POST" id="contact-form">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde Easy Lav">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="index.html#home">
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono (Opcional)</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos cómo podemos ayudarte..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-phone"></i> Teléfonos</h3>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/593987450600" target="_blank">+593 98-745-0600</a>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <div class="info-item">
+                        <i class="fas fa-at"></i>
+                        <a href="mailto:adarielasanchez@gmail.com">adarielasanchez@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+                    <div class="info-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Av. los chásquis<br>Ambato 180202, Ecuador</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3><i class="fas fa-clock"></i> Horarios</h3>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-days"></i>
+                        <span>Lunes a Viernes: 8:00 AM - 7:00 PM</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-week"></i>
+                        <span>Sábados: 8:30 AM - 7:00 PM</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </a>
-      <ul>
-        <li><a href="index.html#home">Inicio</a></li>
-        <li><a href="index.html#about">Sobre nosotros</a></li>
-        <li><a href="index.html#services">Servicios</a></li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
-    </div>
-  </header>
+    </main>
 
-  <main>
-    <section id="formulario-contacto">
-      <h2>Formulario de contacto</h2>
-      <p>Envíanos tus sugerencias o quejas. Nuestro equipo se comunicará contigo si es necesario.</p>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/593967829548" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-      <form action="https://formsubmit.co/jm2104321@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Nuevo mensaje desde Easy Lav">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="index.html#home">
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Easy Lav</h3>
+                <p>Tu lavandería de confianza</p>
+                <p>&copy; 2025 Easy Lav. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a></p>
+                <p><a href="https://wa.me/593987450600" target="_blank">+593 98-745-0600</a></p>
+                <p><a href="mailto:adarielasanchez@gmail.com">adarielasanchez@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Av. los chásquis<br>Ambato 180202, Ecuador</p>
+                <p>Desarrollado por Juan A. Montesdeoca</p>
+            </div>
+        </div>
+    </footer>
 
-        <label for="nombre">Nombre completo</label>
-        <input type="text" name="nombre" required>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
 
-        <label for="email">Correo electrónico</label>
-        <input type="email" name="email" required>
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
 
-        <label for="mensaje">Mensaje</label>
-        <textarea name="mensaje" rows="6" required></textarea>
+        // Form animation on focus
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
 
-        <button type="submit">Enviar mensaje</button>
-      </form>
-    </section>
-  </main>
+        // Form submission feedback
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+        });
 
-  <footer>
-    <p>&copy; 2025 Easy Lav. Todos los derechos reservados.</p>
-    <p>Desarrollado por Juan A. Montesdeoca</p>
-    <p>Contacto:<br><a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a><br><a href="https://wa.me/593987450600" target="_blank">+593 98-745-0600</a></p>
-    <a href="mailto:adarielasanchez@gmail.com" target="_blank"><p>adarielasanchez@gmail.com</p></a>
-    <p>Dirección: Av. los chásquis, Ambato 180202, Ecuador</p>
-  </footer>
+        // Add smooth animations to info cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        });
+
+        document.querySelectorAll('.info-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>

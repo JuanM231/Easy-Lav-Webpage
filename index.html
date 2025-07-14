@@ -3,61 +3,778 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Lav</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Easy Lav - Lavandería Premium</title>
     <link rel="icon" href="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/refs/heads/main/images/icon/475869239_1199021471623884_3319341337589532364_n-removebg-preview%20(2).ico" type="image/x-icon">
-    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff4c3c;
+            --secondary-color: #ff3e55;
+            --accent-color: #ffd700;
+            --dark-color: #1a1a1a;
+            --light-color: #ffffff;
+            --gray-color: #f5f5f5;
+            --text-color: #333;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --gradient-bg: linear-gradient(135deg, #ff4c3c 0%, #ff3e55 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comfortaa', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Loader Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--gradient-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .loader-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Enhanced Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 76, 60, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(255, 76, 60, 0.98);
+            padding: 0.5rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-section:hover {
+            transform: scale(1.05);
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .brand-text h1 {
+            font-size: 2rem;
+            color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .brand-text p {
+            color: var(--dark-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(255, 76, 60, 0.8), rgba(255, 62, 85, 0.8)), url('https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/476115927_1199021641623867_2329938263588946972_n.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-bubble:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .floating-bubble:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            right: 15%;
+            animation-delay: -4s;
+        }
+
+        .floating-bubble:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            left: 70%;
+            animation-delay: -1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.3); }
+            to { text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--dark-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-bg);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-color);
+            border-radius: 20px;
+            margin: 4rem 0;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding: 2rem;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--gray-color);
+            padding: 6rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--gradient-bg);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card p {
+            color: var(--text-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--light-color);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--gradient-bg);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 76, 60, 0.3);
+            margin-top: 2rem;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 76, 60, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-<div id="navbar">
-  <a href="#home" class="logo-bloque">
-    <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" class="logo" alt="Logo" width="100" height="100">
-    <div class="titulo-y-slogan">
-      <h1>Easy Lav</h1>
-      <p>Lava Facil</p>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" alt="Easy Lav Logo" class="loader-logo">
+            <div class="loader-text">Easy Lav</div>
+        </div>
     </div>
-  </a>
 
-  <ul>
-    <li><a href="#home">Inicio</a></li>
-    <li><a href="#about">Sobre nosotros</a></li>
-    <li><a href="#services">Servicios</a></li>
-    <li><a href="contact.html">Contacto</a></li>
-  </ul>
-</div>
-
+    <!-- Header -->
+    <header id="header">
+        <nav class="navbar">
+            <a href="#home" class="logo-section">
+                <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" alt="Easy Lav Logo" class="logo">
+                <div class="brand-text">
+                    <h1>Easy Lav</h1>
+                    <p>Lava Fácil</p>
+                </div>
+            </a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre Nosotros</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
     </header>
 
-    <main>
-        <section id="home">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-bubble"></div>
+            <div class="floating-bubble"></div>
+            <div class="floating-bubble"></div>
+        </div>
+        <div class="hero-content">
             <h2>Bienvenido a Easy Lav</h2>
-            <p>Tu solución de lavandería al alcance de todos</p>
-            <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/476115927_1199021641623867_2329938263588946972_n.jpg" alt="Lavandería Easy Lav" class="banner-image" width="10%" height="10%">
-            <a href="#about"><button id="btn-learn-more">Aprende más</button></a>
+            <p>Tu solución de lavandería premium al alcance de todos</p>
+            <a href="#about" class="cta-button">Descubre Más</a>
+        </div>
+    </section>
 
-        </section>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about fade-in">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Easy Lav ofrece un servicio de lavandería rápido, eficiente y de calidad gracias a nuestras máquinas Speed Queen, líderes en el mercado.</p>
+                    <p>Aquí cuidamos tu ropa como si fuera nuestra, brindándote resultados impecables y a tiempo. ¡Tu mejor opción para mantener tus prendas limpias y frescas!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/refs/heads/main/images/19708901324.png" alt="Servicio de lavandería profesional">
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2>Sobre nosotros</h2>
-            <p>Easy Lav ofrece un servicio de lavandería rápido, eficiente y de calidad gracias a nuestras máquinas Speed Queen, líderes en el mercado. Aquí cuidamos tu ropa como si fuera nuestra, brindándote resultados impecables y a tiempo. ¡Tu mejor opción para mantener tus prendas limpias y frescas.</p>
-            <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/refs/heads/main/images/19708901324.png" alt="Mujer en una lavanderia" class="team-image">
-        </section>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <i class="fas fa-tshirt service-icon"></i>
+                    <h3>Lavado Premium</h3>
+                    <p>Lavado profesional con las mejores máquinas Speed Queen para el cuidado perfecto de tu ropa.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-wind service-icon"></i>
+                    <h3>Secado Rápido</h3>
+                    <p>Secado eficiente y rápido que preserva la calidad y textura de tus prendas favoritas.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <i class="fas fa-iron service-icon"></i>
+                    <h3>Doblado Expert</h3>
+                    <p>Servicio de doblado profesional para que tu ropa luzca impecable en todo momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section id="services">
-            <h2>Nuestros Servicios</h2>
-            <p>Ofrecemos una variedad de servicios de lavandería, incluyendo lavado, secado y planchado.</p>
-            <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/refs/heads/main/images/0016_Autoservicio-2.png" alt="Servicios de lavandería" class="services-image" width="10%" height="10%">
-            <a href="contact.html"><button id="btn-contact">Contáctanos</button></a>
-        </section>
-    </main>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section">
+            <h2 class="section-title">¿Listo para Empezar?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Contáctanos y descubre la diferencia de un servicio de lavandería premium</p>
+            <a href="contact.html" class="contact-button">Contáctanos Ahora</a>
+        </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Easy Lav. Todos los derechos reservados.</p>
-        <p>Desarrollado por Juan A. Montesdeoca</p>
-        <p>Contacto:<br><a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a><br><a href="https://wa.me/593987450600" target="_blank">+593 98-745-0600</a></p>
-        <a href="mailto:adarielasanchez@gmail.com" target="_blank"><p>adarielasanchez@gmail.com</p></a>
-        <p>Dirección: Av. los chásquis, Ambato 180202, Ecuador</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Easy Lav</h3>
+                <p>Tu lavandería de confianza</p>
+                <p>&copy; 2025 Easy Lav. Todos los derechos reservados.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p><a href="https://wa.me/593967829548" target="_blank">+593 96-782-9548</a></p>
+                <p><a href="https://wa.me/593987450600" target="_blank">+593 98-745-0600</a></p>
+                <p><a href="mailto:adarielasanchez@gmail.com">adarielasanchez@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Ubicación</h3>
+                <p>Av. los chásquis<br>Ambato 180202, Ecuador</p>
+                <p>Desarrollado por Juan A. Montesdeoca</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+
+        // Add floating animation to bubbles
+        document.querySelectorAll('.floating-bubble').forEach((bubble, index) => {
+            bubble.style.animationDelay = `${index * 2}s`;
+        });
+    </script>
 </body>
 </html>
