@@ -371,7 +371,8 @@
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
             z-index: 1000;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            animation: pulse-whatsapp 2s infinite;
+            text-decoration: none;
         }
 
         .whatsapp-float:hover {
@@ -379,46 +380,12 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
         }
 
-        @keyframes pulse {
+        @keyframes pulse-whatsapp {
             0% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
             50% { box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
             100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
         }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
+        
         /* Footer */
         footer {
             background: var(--dark-color);
