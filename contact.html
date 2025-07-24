@@ -47,6 +47,11 @@
             transition: all 0.3s ease;
         }
 
+        header.scrolled {
+            background: rgba(255, 76, 60, 0.98);
+            padding: 0.5rem 0;
+        }
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -133,6 +138,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .menu-toggle span {
@@ -141,6 +147,18 @@
             background: white;
             margin: 3px 0;
             transition: 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
         }
 
         /* Main Content */
@@ -474,9 +492,9 @@
 
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <nav class="navbar">
-            <a href="index.html#home" class="logo-section">
+            <a href="#home" class="logo-section">
                 <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" alt="Easy Lav Logo" class="logo">
                 <div class="brand-text">
                     <h1>Easy Lav</h1>
@@ -484,10 +502,10 @@
                 </div>
             </a>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="index.html#home">Inicio</a></li>
-                <li><a href="index.html#about">Sobre Nosotros</a></li>
-                <li><a href="index.html#services">Servicios</a></li>
-                <li><a href="#" style="color: var(--accent-color);">Contacto</a></li>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre Nosotros</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#contact">Contacto</a></li>
             </ul>
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
@@ -612,12 +630,23 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle - CORREGIDO
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
 
         menuToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
 
         // Form animation on focus
