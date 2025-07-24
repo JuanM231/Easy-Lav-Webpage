@@ -778,21 +778,26 @@
     </footer>
 
     <script>
-        // Loader - Solo aparece la primera vez
-        window.addEventListener('load', function() {
-            // Verificar si es la primera visita
-            if (!localStorage.getItem('hasVisitedBefore')) {
-                // Primera visita - mostrar loader y guardar en localStorage
-                setTimeout(function() {
-                    document.getElementById('loader').classList.add('hidden');
-                    // Guardar que ya visitó la página
-                    localStorage.setItem('hasVisitedBefore', 'true');
-                }, 1500);
+        // Loader - Solo aparece al cargar la página por primera vez en cada sesión
+        (function() {
+            // Verificar si ya se ha cargado la página en esta sesión
+            if (!sessionStorage.getItem('pageLoadedInSession')) {
+                // Primera carga en esta sesión - mostrar loader por poco tiempo
+                window.addEventListener('load', function() {
+                    setTimeout(function() {
+                        document.getElementById('loader').classList.add('hidden');
+                        // Guardar que ya se cargó la página en esta sesión
+                        sessionStorage.setItem('pageLoadedInSession', 'true');
+                    }, 500);
+                });
             } else {
-                // No es la primera visita - ocultar loader inmediatamente
-                document.getElementById('loader').classList.add('hidden');
+                // No es la primera carga en esta sesión - ocultar loader completamente
+                // Añadir clase hidden inmediatamente antes de que la página cargue
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.getElementById('loader').style.display = 'none';
+                });
             }
-        });
+        })();
 
         // Header scroll effect
         window.addEventListener('scroll', function() {
