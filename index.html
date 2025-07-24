@@ -778,11 +778,20 @@
     </footer>
 
     <script>
-        // Loader
+        // Loader - Solo aparece la primera vez
         window.addEventListener('load', function() {
-            setTimeout(function() {
+            // Verificar si es la primera visita
+            if (!localStorage.getItem('hasVisitedBefore')) {
+                // Primera visita - mostrar loader y guardar en localStorage
+                setTimeout(function() {
+                    document.getElementById('loader').classList.add('hidden');
+                    // Guardar que ya visitó la página
+                    localStorage.setItem('hasVisitedBefore', 'true');
+                }, 1500);
+            } else {
+                // No es la primera visita - ocultar loader inmediatamente
                 document.getElementById('loader').classList.add('hidden');
-            }, 1500);
+            }
         });
 
         // Header scroll effect
