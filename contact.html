@@ -443,21 +443,27 @@
             }
 
             .nav-menu {
-                position: absolute;
-                top: 100%;
-                left: 0;
+                position: fixed;
+                top: 0;
+                left: -100%;
                 width: 100%;
+                height: 100vh;
                 background: var(--primary-color);
                 flex-direction: column;
-                padding: 2rem;
-                transform: translateY(-100%);
-                opacity: 0;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
                 transition: all 0.3s ease;
+                z-index: 1000;
             }
 
             .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
+                left: 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.5rem;
+                padding: 1rem 0;
             }
 
             .contact-hero h1 {
@@ -494,7 +500,7 @@
     <!-- Header -->
     <header id="header">
         <nav class="navbar">
-            <a href="#home" class="logo-section">
+            <a href="index.html" class="logo-section">
                 <img src="https://raw.githubusercontent.com/JuanM231/Easy-Lav-Website/2dee298c813ed0d1bc29ee11e3c9d08ac022c840/images/475869239_1199021471623884_3319341337589532364_n.jpg" alt="Easy Lav Logo" class="logo">
                 <div class="brand-text">
                     <h1>Easy Lav</h1>
